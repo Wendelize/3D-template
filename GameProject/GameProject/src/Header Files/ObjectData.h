@@ -50,13 +50,6 @@ Object::Object(float size, vec3 pos)
 	_size = size;
 	_position = pos;
 
-	//double dArray[16] = { 0.0 };
-
-	//const float *pSource = (const float*)value_ptr(_modelMatrix);
-	//for (int i = 0; i < 16; ++i) {
-	//	dArray[i] = pSource[i];
-	//	cout << "World: " << to_string(dArray[i]) << endl;
-	//}
 }
 
 Object::~Object()
@@ -217,7 +210,6 @@ void Object::drawObject(Shader * shaderProgram)
 {
 	glBindVertexArray(VA);
 	//shaderProgram->setUniform("model", _modelMatrix);
-	//cout << _nrOfV << endl;
 	glDrawElements(GL_TRIANGLES, _nrOfI, GL_UNSIGNED_INT, (void*)0);
 	glBindVertexArray(0);
 }
@@ -247,16 +239,13 @@ void Object::initObject()
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertexData), BUFFER_OFFSET(sizeof(float) * 3));
 	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(vertexData), BUFFER_OFFSET(sizeof(float) * 6));
 
-	for (int i = 0; i < _nrOfV; i++)
-{
-	cout << i << " " << to_string(_vertices[i].pos.x) <<" " <<to_string(_vertices[i].pos.y) << " " <<to_string(_vertices[i].pos.z) <<endl;
-}
+	
 }
 
 mat4 Object::getModelMat()
 {
 	//_modelMatrix = translate(mat4(1.0f), _position);
 	//_modelMatrix = rotate(_modelMatrix, radians(20.0f), vec3(1.0f, 0.0f, 0.0f));
-	_modelMatrix = rotate(mat4(1.0f), (float)glfwGetTime(), vec3(1.0f, 0.0f, 0.0f));
+	_modelMatrix = rotate(mat4(1.0f), (float)glfwGetTime(), vec3(1.0f, 1.0f, 0.0f));
 	return _modelMatrix;
 }

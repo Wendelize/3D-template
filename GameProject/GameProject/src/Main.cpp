@@ -43,11 +43,6 @@ void createStuff()
 
 	double dArray[16] = { 0.0 };
 
-	//const float *pSource = (const float*)value_ptr(_wvp.projection);
-	//for (int i = 0; i < 16; ++i) {
-	//	dArray[i] = pSource[i];
-	//	cout << "World: " << to_string(dArray[i]) << endl;
-	//}
 
 }
 
@@ -59,11 +54,6 @@ void render()
 
 
 	_shader->useShader();
-	//for (int i = 0; i < 4; i++)
-	//{
-	//	cout << "Line : " << i << " element " << _viewMatrix[i][0] << " " << _viewMatrix[i][1] << " " 
-	//		<< _viewMatrix[i][2] << " " << _viewMatrix[i][3] << endl;
-	//}
 	_shader->setUniform("view", _camera->getView());
 	_shader->setUniform("projection", _projectionMatrix);
 	_shader->setUniform("model", _object->getModelMat());
@@ -82,7 +72,7 @@ int main(void)
 	createStuff();
 	while (!glfwWindowShouldClose(_gameWindow->_window))
 	{	
-		_curTime = glfwGetTime();
+		_curTime = (float)glfwGetTime();
 		_deltaTime = _curTime - _lastTime;
 		_lastTime = _curTime;
 		_camera->update(_deltaTime, 10);
